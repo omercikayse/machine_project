@@ -18,6 +18,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main';
 
+//service
+import { HttpApiService } from './services/http-api';
+
 const matModules = [
   MatButtonModule,
   MatToolbarModule,
@@ -37,7 +40,7 @@ const modules = [
 ];
 
 const components = [AppComponent, MainComponent];
-const services: any[] = [];
+const services: any[] = [HttpApiService];
 const guards: any[] = [];
 // const directives: any[] = [];
 // const pipes: any[] = [];
