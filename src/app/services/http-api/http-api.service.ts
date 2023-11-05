@@ -9,21 +9,21 @@ export type Params = HttpParams | { [param: string]: string | string[] };
 export class HttpApiService {
 	private apiPrefix: string = '/api';
 
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient) { }
 
-	public invokeUrl(apiUrl: string, path: string, version: string) {
-		return `${apiUrl}${this.apiPrefix}${version}${path}`;
+	public invokeUrl(apiUrl: string, path: string) {
+		return `${apiUrl}${this.apiPrefix}${path}`;
 	}
-	public get(apiUrl: string, path: string, version: string, params?: Params, headers?: Headers): Observable<any> {
-		return this.http.get(this.invokeUrl(apiUrl, path, version), { headers, params });
+	public get(apiUrl: string, path: string, params?: Params, headers?: Headers): Observable<any> {
+		return this.http.get(this.invokeUrl(apiUrl, path), { headers, params });
 	}
-	public post(apiUrl: string, path: string, version: string, body: any | null, params?: Params, headers?: Headers): Observable<any> {
-		return this.http.post(this.invokeUrl(apiUrl, path, version), body, { headers, params });
+	public post(apiUrl: string, path: string, body: any | null, params?: Params, headers?: Headers): Observable<any> {
+		return this.http.post(this.invokeUrl(apiUrl, path), body, { headers, params });
 	}
-	public put(apiUrl: string, path: string, version: string, body: any | null, params?: Params, headers?: Headers): Observable<any> {
-		return this.http.put(this.invokeUrl(apiUrl, path, version), body, { headers, params });
+	public put(apiUrl: string, path: string, body: any | null, params?: Params, headers?: Headers): Observable<any> {
+		return this.http.put(this.invokeUrl(apiUrl, path), body, { headers, params });
 	}
-	public delete(apiUrl: string, path: string, version: string, params?: Params, headers?: Headers): Observable<any> {
-		return this.http.delete(this.invokeUrl(apiUrl, path, version), { headers, params });
+	public delete(apiUrl: string, path: string, params?: Params, headers?: Headers): Observable<any> {
+		return this.http.delete(this.invokeUrl(apiUrl, path), { headers, params });
 	}
 }
