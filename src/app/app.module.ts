@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 //material module
 import { MatButtonModule } from '@angular/material/button';
@@ -17,9 +18,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 //component
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main';
+import { UserListComponent } from './components/user-list';
 
 //service
 import { HttpApiService } from './services/http-api';
+import { UserService } from './services/user';
 
 const matModules = [
   MatButtonModule,
@@ -37,10 +40,11 @@ const modules = [
   BrowserModule,
   FormsModule,
   ReactiveFormsModule,
+  HttpClientModule
 ];
 
-const components = [AppComponent, MainComponent];
-const services: any[] = [HttpApiService];
+const components = [AppComponent, MainComponent, UserListComponent];
+const services: any[] = [HttpApiService, UserService];
 const guards: any[] = [];
 // const directives: any[] = [];
 // const pipes: any[] = [];
@@ -51,4 +55,4 @@ const guards: any[] = [];
   providers: [...services, ...guards],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
