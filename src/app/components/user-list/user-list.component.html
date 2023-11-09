@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="content-item">
+        <div class="header"> User List</div>
+        <div *ngIf="userList.length==0" class="loading-content">
+            <mat-spinner class="loading"></mat-spinner>
+        </div>
+
+        <div class="user-list-content">
+            <div *ngFor="let user of userList">
+                <app-user-card [user]="user"></app-user-card>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="favoriteUserList.length>0" class="content-item">
+        <div class="header">Favorite User List</div>
+        <div class="user-list-content">
+            <div *ngFor="let user of favoriteUserList">
+                <app-user-card [user]="user"></app-user-card>
+            </div>
+        </div>
+    </div>
+</div>
