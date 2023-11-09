@@ -14,11 +14,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 //component
 import { AppComponent } from './app.component';
 import { MainComponent } from './pages/main';
 import { UserListComponent } from './components/user-list';
+import { UserCardComponent } from './components/user-card';
 
 //service
 import { HttpApiService } from './services/http-api';
@@ -32,6 +36,8 @@ const matModules = [
   MatInputModule,
   MatFormFieldModule,
   MatCheckboxModule,
+  MatCardModule, 
+  MatProgressSpinnerModule
 ];
 
 const modules = [
@@ -43,7 +49,7 @@ const modules = [
   HttpClientModule
 ];
 
-const components = [AppComponent, MainComponent, UserListComponent];
+const components = [AppComponent, MainComponent, UserListComponent, UserCardComponent];
 const services: any[] = [HttpApiService, UserService];
 const guards: any[] = [];
 // const directives: any[] = [];
