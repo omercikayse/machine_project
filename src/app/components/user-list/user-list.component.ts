@@ -24,11 +24,11 @@ export class UserListComponent {
 
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.getRandomUser();
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     clearInterval(this.interval);
     this.subscription.unsubscribe();
   }
@@ -43,14 +43,39 @@ export class UserListComponent {
   public getUser(userId: number): void {
     this.userIds.push(userId);
 
-    this.subscription = this.userService.getUsers(userId).subscribe(val => {
-      this.userList.push(val);
+    this.subscription = this.userService.getUsers(userId).subscribe(value => {
+
+      if (this.favoriteUserList.find((user: User) => user.id === value.id)) {
+        value.isFavourite = true;
+      }
+
+      this.userList.push(value);
 
       if (this.userList.length > MAX_USERS && this.userIds.length > MAX_USERS) {
         this.userList.shift();
         this.userIds.shift();
       }
+
+      this.favoriteUserListLimitCheck();
     })
+  }
+
+  public onSelectedUser(user: User): void {
+    if (user.isFavourite) { this.favoriteUserList.push(user); }
+    else {
+      this.favoriteUserList = this.favoriteUserList.filter((favoriteUser: User) => favoriteUser.id !== user.id);
+    }
+
+    this.favoriteUserListLimitCheck();
+  }
+
+  private favoriteUserListLimitCheck(): void {
+    if (this.favoriteUserList.length >= MAX_USERS) {
+      this.userList.filter(i => !i.isFavourite).forEach((user: User) => user.isDisabled = true)
+    }
+    else {
+      this.userList.forEach((user: User) => user.isDisabled = false)
+    }
   }
 
   private getRandomUniqueNumber(min: number, max: number, numberList: number[]): number {

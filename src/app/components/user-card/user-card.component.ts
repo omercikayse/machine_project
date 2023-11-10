@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -8,13 +8,13 @@ import { User } from 'src/app/models/user';
 })
 export class UserCardComponent {
 
-  @Input()
-  public user!: User;
+  @Input() public user!: User;
+  @Output() selectedUser = new EventEmitter<User>();
 
+  constructor() { }
 
-  constructor() {}
-
-  public toggleFavourite(): void { 
+  public toggleFavourite(): void {
     this.user.isFavourite = !this.user.isFavourite;
+    this.selectedUser.emit(this.user);
   }
 }

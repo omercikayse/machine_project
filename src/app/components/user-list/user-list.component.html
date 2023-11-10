@@ -7,7 +7,7 @@
 
         <div class="user-list-content">
             <div *ngFor="let user of userList">
-                <app-user-card [user]="user"></app-user-card>
+                <app-user-card [user]="user" (selectedUser)="onSelectedUser($event)"></app-user-card>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
         <div class="header">Favorite User List</div>
         <div class="user-list-content">
             <div *ngFor="let user of favoriteUserList">
-                <app-user-card [user]="user"></app-user-card>
+                <app-user-card [user]="user" (selectedUser)="onSelectedUser($event)"></app-user-card>
             </div>
         </div>
     </div>
