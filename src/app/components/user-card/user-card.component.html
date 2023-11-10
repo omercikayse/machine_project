@@ -1,10 +1,10 @@
 <mat-card *ngIf="user" class="user-card">
     <mat-card-header>
-        <mat-card-title> {{ user.first_name }} {{ user.last_name }} </mat-card-title>
-        <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
+        <mat-card-title class="user-card-title"> {{ user.first_name }} {{ user.last_name }} </mat-card-title>
+        <mat-card-subtitle class="user-card-subtitle">{{user.email}}</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image class="user-card-image" [src]="user.avatar" alt="Photo of avatar">
-    <mat-card-actions>
+    <mat-card-actions class="user-card-actions">
         <button [disabled]="user.isDisabled" mat-icon-button (click)="toggleFavourite()">
             <mat-icon *ngIf="user.isFavourite"> favorite </mat-icon>
             <mat-icon *ngIf="!user.isFavourite"> favorite_border </mat-icon>
