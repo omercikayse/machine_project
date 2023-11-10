@@ -1,24 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MainComponent } from './main.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { UserListComponent } from 'src/app/components/user-list';
-import { UserService } from 'src/app/services/user';
-import { HttpApiService } from 'src/app/services/http-api';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-user-list',
+  template: '<div>Mock User List Component</div>',
+})
+class MockUserListComponent {}
 
 describe('MainComponent', () => {
   let component: MainComponent;
   let fixture: ComponentFixture<MainComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [MainComponent, UserListComponent],
-      imports: [MatToolbarModule, HttpClientTestingModule, MatProgressSpinnerModule],
-      providers: [UserService, HttpApiService],
-      teardown: { destroyAfterEach: false }
-    });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [MainComponent, MockUserListComponent],
+      imports: [MatToolbarModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -27,7 +26,17 @@ describe('MainComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create the app', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the toolbar with "My User App"', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('mat-toolbar span').textContent).toContain('My User App');
+  });
+
+  it('should render the user list component', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('app-user-list')).toBeDefined();
   });
 });

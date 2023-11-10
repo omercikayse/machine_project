@@ -4,7 +4,7 @@ import { UserService } from 'src/app/services/user';
 import { of } from 'rxjs';
 import { User } from 'src/app/models/user';
 
-fdescribe('UserListComponent', () => {
+describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
   let userServiceSpy: jasmine.SpyObj<UserService>;
